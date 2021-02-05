@@ -13,8 +13,9 @@ var car = {
     }
 }
 
-var myCarDetails =  car.displayDetails;
-myCarDetails();
+var myCarDetails =  function(car){car.displayDetails()};
+myCarDetails(this.car);
+
 
 
 /** 
@@ -27,9 +28,33 @@ bosluk icerebilir, ancak bosluk haridcindeki isimler en az 2 karakterden olusmal
 
 **/
 
-function isValidName(name) {
-  /// your code here
+function isString(value) {
+	return typeof value === 'string' || value instanceof String;
 }
+function isEmpty(str) {
+    return (!str || 0 === str.length);
+}
+function regEx(str){
+ var res = str.split(" ");
+for (x of res) {
+  if(x.length<1){
+     return false
+  }
+
+}
+return true
+};
+
+
+function isValidName(name) {
+  if(isString(name) && isEmpty(name) && regEx(name)){
+    return true
+  }
+  else {
+    return false
+  }
+}
+
 
 
 
@@ -45,9 +70,9 @@ const book = {
   author: 'Aldous Huxley',
 }
 
-function summary(genre, year) {
+function summary(book, genre, year) {
   console.log(
-    `${this.title} was written by ${this.author}. It is a ${genre} novel written in ${year}.`,
+    `${book.title} was written by ${book.author}. It is a ${genre} novel written in ${year}.`,
   )
 }
 
